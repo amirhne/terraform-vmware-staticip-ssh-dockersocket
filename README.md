@@ -1,4 +1,5 @@
 # Terraform VMware vSphere Static IP + SSH + Docker Access for user
+![Scenario](https://github.com/amirhne/terraform-vmware-staticip-ssh-docker/blob/main/vmware-vsphere-terraform-cloud-init.png)
 
 this Terraform module provisions VMware virtual machines with:
 - **Static IP assignment** (configurable range)
