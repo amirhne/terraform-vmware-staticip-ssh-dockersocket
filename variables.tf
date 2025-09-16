@@ -75,7 +75,7 @@ variable "packages" {
 variable "admin_user" {
   description = "Admin username to create"
   type        = string
-  default     = "barezpakhsh"
+  default     = "user"
 }
 
 variable "ssh_public_key" {
