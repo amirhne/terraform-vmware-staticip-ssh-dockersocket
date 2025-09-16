@@ -1,9 +1,9 @@
-# Terraform VMware vSphere Static IP + SSH + Docker Socket Access for user
+# Terraform VMware vSphere Static IP + SSH + Docker Access for user
 
 this Terraform module provisions VMware virtual machines with:
 - **Static IP assignment** (configurable range)
 - **SSH access** with key-based authentication
-- **Docker socket forwarding** for remote Docker management
+- **Docker socket access** for newly admin created user to access docker Docker Engine
 
 Perfect for DevOps and Cloud engineers needing consistent, reproducible VM environments with Docker control.
 
