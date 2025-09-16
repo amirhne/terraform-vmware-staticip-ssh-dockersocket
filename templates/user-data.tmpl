@@ -1,0 +1,47 @@
+#cloud-config
+hostname: ${hostname}
+manage_etc_hosts: true
+preserve_hostname: false
+
+users:
+  - name: ${admin_user}
+    ssh-authorized-keys:
+      - ${ssh_key}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    shell: /bin/bash
+
+packages:
+%{ for pkg in packages ~}
+  - ${pkg}
+%{ endfor ~}
+
+#runcmd:
+#  - echo "Provisioned by Terraform + cloud-init" > /root/provisioned.txt
+#  - systemctl daemon-reload
+
+# Optional: Static IP config (uncomment to use)
+write_files:
+  - path: /etc/netplan/99-static.yaml
+    permissions: '0644'
+    content: |
+      network:
+        version: 2
+        ethernets:
+          ens33:
+            dhcp4: false
+            addresses: [${vm_ip}/24]
+            gateway4: ${default_gw}
+            nameservers:
+              addresses: [192.168.200.195, 8.8.8.8]
+runcmd:
+  - netplan apply
+  - systemctl daemon-reload
+  - usermod -aG docker ${admin_user}
+  - echo "Provisioned by Terraform + cloud-init" > /root/provisioned.txt
+
+#runcmd:
+#  - usermod -aG docker ${admin_user}
+
+
+final_message: "VM ${hostname} is ready!"
