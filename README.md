@@ -1,0 +1,1 @@
+# terraform-vmware-staticip-ssh-dockersocket
